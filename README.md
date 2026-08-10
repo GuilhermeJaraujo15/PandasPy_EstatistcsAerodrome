@@ -1,4 +1,4 @@
-# Análise de Dados de Voos copm ênfase na Meteorologia Local
+# Análise de Dados de Voos com ênfase na Meteorologia Local
 
 Este projeto realiza uma análise exploratória de dados (EDA) para responder a perguntas de negócio sobre a relação entre condições meteorológicas e operações de voos. Utiliza Python com as bibliotecas Pandas, NumPy, Matplotlib, Seaborn e SciPy para processar e analisar dados de voos (três anos, mês de julho) e dados meteorológicos correspondentes.
 
