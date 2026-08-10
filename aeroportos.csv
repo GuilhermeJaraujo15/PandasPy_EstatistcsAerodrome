@@ -1,0 +1,11 @@
+codigo_icao,codigo_iata,nome_aeroporto,cidade,estado,pais,latitude,longitude,altitude_m
+SBGR,GRU,Aeroporto Internacional de São Paulo/Guarulhos,Guarulhos,SP,Brasil,-23.4356,-46.4731,750
+SBGL,GIG,Aeroporto Internacional do Rio de Janeiro/Galeão,Rio de Janeiro,RJ,Brasil,-22.8099,-43.2506,9
+SBBR,BSB,Aeroporto Internacional de Brasília,Brasília,DF,Brasil,-15.8711,-47.9186,1066
+SBCF,CNF,Aeroporto Internacional de Belo Horizonte/Confins,Confins,MG,Brasil,-19.6244,-43.9719,827
+SBPA,POA,Aeroporto Internacional de Porto Alegre,Porto Alegre,RS,Brasil,-29.9944,-51.1714,3
+SBCT,CWB,Aeroporto Internacional de Curitiba,Curitiba,PR,Brasil,-25.5285,-49.1758,911
+SBRF,REC,Aeroporto Internacional do Recife,Recife,PE,Brasil,-8.1265,-34.9236,10
+SBFL,FLN,Aeroporto Internacional de Florianópolis,Florianópolis,SC,Brasil,-27.6703,-48.5525,5
+SBSV,SSA,Aeroporto Internacional de Salvador,Salvador,BA,Brasil,-12.9086,-38.3225,20
+SBCG,CGR,Aeroporto Internacional de Campo Grande,Campo Grande,MS,Brasil,-20.4687,-54.6725,558
