@@ -20,7 +20,7 @@ O sistema espera **6 arquivos CSV**:
 
 ---
 
-## Algumas das Tecnologias Utilizadas
+## Principais Tecnologias Utilizadas
 
 | Ferramenta | Para que serve neste projeto? (De forma simples) |
 | :--- | :--- |
