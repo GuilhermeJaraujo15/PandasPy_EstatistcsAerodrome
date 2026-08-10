@@ -1,6 +1,6 @@
 # Análise de Dados de Voos com ênfase na Meteorologia Local
 
-Este projeto realiza uma análise exploratória de dados (EDA) para responder a perguntas propostas sobre a relação entre condições meteorológicas e operações de voos em um único período sazonal. Utiliza Python com as bibliotecas Pandas, NumPy, Matplotlib e demais, para processar e analisar dados de voos (mês de julho, nos anos de 2023, 2024 e 2025) e dados meteorológicos correspondentes as mesmas datas.
+Este projeto realiza uma análise exploratória de dados (EDA) para responder a perguntas propostas sobre a relação entre condições meteorológicas e operações de voos em um único período sazonal. Utiliza Python com as bibliotecas Pandas, NumPy, Matplotlib e demais, para processar e analisar dados de voos (mês de julho, nos anos de 2023, 2024 e 2025) e dados meteorológicos correspondentes as mesmas datas. Todavia, importa dizer que estes dados são totalemente fictícios com propósito único de treinar o uso do Python em suas bibliotecas. 
 
 ---
 
