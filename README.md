@@ -31,3 +31,142 @@ O sistema espera **6 arquivos CSV**:
 | **Seaborn** | Deixa os gráficos do Matplotlib mais bonitos, coloridos e fáceis de entender. |
 | **os** | Cria automaticamente a pasta `img/` no seu computador para guardar os gráficos gerados. |
 
+# Explicação da Saída do Script
+
+Abaixo está a interpretação detalhada de cada bloco de saída gerado pelo script `veranalise.py`. Essas informações ajudam a entender os resultados e a validade das conclusões.
+
+## Mensagem Inicial
+
+```text
+Dados carregados:
+  Voos: 3720 registros
+  Meteorologia: 4650 registros
+
+Nenhum registro com visibilidade < 5000 m. Injetando dados sintéticos...
+Visibilidade reduzida para 177 voos (agora com valores < 5000m).
+```
+
+* **Voos**: 3.720 registros (3 anos × 31 dias × 40 voos/dia).
+* **Meteorologia**: 4.650 registros (3 anos × 31 dias × 10 aeroportos × 5 horários).
+* **Injeção de dados**: Como os dados originais não continham visibilidade muito baixa, o script injetou 177 registros sintéticos (5% dos voos realizados) com visibilidade entre 500 e 4.500 m para permitir a análise da faixa "Muito baixa (<5000m)".
+
+---
+
+## Atraso Médio por Faixa de Visibilidade
+
+```text
+--- Atraso médio por faixa de visibilidade ---
+                           mean  median  count        std
+faixa_visibilidade                                       
+Muito baixa (<5000m)  29.384181    29.0    177  12.991666
+Baixa (5000-10000m)   30.053104    30.0   2787  12.323093
+Normal (>10000m)      24.371380    23.0    587  14.471169
+```
+
+* **mean**: Atraso médio (minutos) para cada faixa.
+* **median**: Valor central (menos sensível a outliers).
+* **count**: Número de voos na faixa.
+* **std**: Desvio padrão – quanto maior, mais dispersos são os atrasos.
+
+**Interpretação**: Voos com visibilidade normal (>10.000m) têm atraso médio de 24,4 min, enquanto os com visibilidade muito baixa (<5.000m) têm 29,4 min – uma diferença de 5 minutos. A faixa intermediária (5.000‑10.000m) apresenta o maior atraso médio (30,1 min), possivelmente por combinar condições adversas sem ainda justificar cancelamentos.
+
+---
+
+## Teste ANOVA (p-value)
+
+```text
+ANOVA p-value: 0.0000 (significativo se p < 0.05)
+```
+
+* **Definição**: O *p-value* (0,0000) é a probabilidade de as diferenças entre as médias dos grupos serem devidas ao acaso.
+* **Conclusão**: Como é menor que 0,05, rejeita‑se a hipótese de que todas as médias são iguais. Portanto, a visibilidade influencia significativamente o atraso.
+
+---
+
+## Correlação Precipitação vs Cancelamentos
+
+```text
+--- Correlação precipitação acumulada vs cancelamentos ---
+r = 0.018, p = 0.8064
+```
+
+* **r (coeficiente de Pearson)**: 0,018 – praticamente zero, indicando ausência de relação linear entre chuva acumulada e número de cancelamentos.
+* **p-value**: 0,8064 – muito acima de 0,05, portanto não há significância estatística.
+
+**Interpretação**: Nos dados analisados, a quantidade de chuva não explica os cancelamentos. Outros fatores (vento, visibilidade, decisões operacionais) podem ser mais relevantes.
+
+---
+
+## Atraso Médio com e sem Chuva por Aeroporto
+
+```text
+--- Atraso médio com e sem chuva por aeroporto ---
+chuva                 False       True      delta
+aeroporto_origem                                 
+SBGL              16.179372  28.745877  12.566504
+SBGR              18.795181  29.208973  10.413792
+```
+
+| Aeroporto Origem | Sem Chuva (`False`) | Com Chuva (`True`) | Diferença (`delta`) |
+| :--- | :--- | :--- | :--- |
+| **SBGL** | 16,18 min | 28,75 min | +12,57 min |
+| **SBGR** | 18,80 min | 29,21 min | +10,41 min |
+
+**Interpretação**: Em ambos os aeroportos, dias chuvosos aumentam o atraso médio em cerca de 10 a 13 minutos. O impacto é ligeiramente maior no SBGL (+12,6 min) do que no SBGR (+10,4 min).
+
+---
+
+## Distribuição de Condições Meteorológicas por Ano
+
+```text
+--- Distribuição de condições meteorológicas por ano (julho) ---
+condicao_meteorologica  Ceu aberto  Chuva  Chuva intensa
+ano                                                     
+2023                           290   1240             20
+2024                           285   1225             40
+2025                           340   1190             20
+```
+
+* **Métrica**: Mostra quantas observações de cada condição ocorreram em julho de cada ano.
+* **Céu aberto**: Aumentou de 290 (2023) para 340 (2025).
+* **Chuva**: Reduziu de 1240 para 1190.
+* **Chuva intensa**: Manteve‑se baixa, com 20‑40 ocorrências.
+
+**Interpretação**: Há uma leve tendência de melhora nas condições meteorológicas ao longo dos anos, com menos dias chuvosos em 2025.
+
+---
+
+## Atrasos por Motivo Meteorologia (julho)
+
+```text
+--- Atrasos por motivo Meteorologia (julho) ---
+      total_atrasos  count  media_atraso
+ano                                     
+2023        34206.0   1180     28.988136
+2024        34678.0   1200     28.898333
+2025        32799.0   1120     29.284821
+```
+
+* **total_atrasos**: Soma de todos os minutos de atraso atribuídos à meteorologia.
+* **count**: Número de voos afetados.
+* **media_atraso**: Atraso médio por voo.
+
+**Interpretação**: O ano de 2024 teve o maior volume total de atrasos climáticos (34.678 min), apesar de a média por voo ser ligeiramente menor que em 2025. Isso indica que, em 2024, mais voos foram afetados, mas os atrasos individuais foram um pouco menores.
+
+---
+
+## Condições Meteorológicas em Atrasos > 30 min
+
+```text
+--- Condições meteorológicas em atrasos > 30 min ---
+condicao_meteorologica
+Chuva       94.888755
+Nevoeiro     5.111245
+Name: proportion, dtype: float64
+```
+
+* **Métrica**: Mostra a proporção (%) de cada condição entre os voos com atraso superior a 30 minutos.
+* **Chuva**: 94,9% dos atrasos significativos ocorrem sob chuva.
+* **Nevoeiro**: 5,1% (registros com visibilidade muito baixa injetados sinteticamente).
+
+**Interpretação**: A grande maioria dos atrasos prolongados está associada à chuva, confirmando que esse é o principal fator meteorológico que impacta a operação.
