@@ -20,7 +20,7 @@ O sistema espera **6 arquivos CSV**:
 
 ---
 
-## Tecnologias Utilizadas
+## Algumas das Tecnologias Utilizadas
 
 | Ferramenta | Para que serve neste projeto? (De forma simples) |
 | :--- | :--- |
@@ -29,6 +29,5 @@ O sistema espera **6 arquivos CSV**:
 | **NumPy** | Ajuda a fazer cálculos matemáticos rápidos e a criar dados de teste para simular o clima. |
 | **Matplotlib** | Ferramenta básica para desenhar e salvar os gráficos no seu computador. |
 | **Seaborn** | Deixa os gráficos do Matplotlib mais bonitos, coloridos e fáceis de entender. |
-| **SciPy** | Faz cálculos estatísticos para provar se a chuva ou o vento realmente afetam os atrasos. |
 | **os** | Cria automaticamente a pasta `img/` no seu computador para guardar os gráficos gerados. |
 
