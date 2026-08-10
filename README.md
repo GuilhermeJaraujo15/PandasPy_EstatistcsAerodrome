@@ -22,12 +22,13 @@ O sistema espera **6 arquivos CSV**:
 
 ## Tecnologias Utilizadas
 
-| Ferramenta | Função |
+| Ferramenta | Para que serve neste projeto? (De forma simples) |
 | :--- | :--- |
-| **Python 3.12+** | Linguagem base |
-| **Pandas** | Manipulação e integração de dados (merge, agregação, transformações) |
-| **NumPy** | Operações vetorizadas e geração de dados sintéticos (para simular baixa visibilidade) |
-| **Matplotlib** | Criação e salvamento de gráficos |
-| **Seaborn** | Gráficos estatísticos com estética aprimorada |
-| **SciPy** | Teste ANOVA e correlação de Pearson |
-| **os** | Criação de diretórios (pasta `img/`) |
+| **Python 3.12+** | O "cérebro" do projeto; a linguagem de programação usada para escrever todo o código. |
+| **Pandas** | Organiza os dados em tabelas (como no Excel) para facilitar a limpeza e a união dos arquivos. |
+| **NumPy** | Ajuda a fazer cálculos matemáticos rápidos e a criar dados de teste para simular o clima. |
+| **Matplotlib** | Ferramenta básica para desenhar e salvar os gráficos no seu computador. |
+| **Seaborn** | Deixa os gráficos do Matplotlib mais bonitos, coloridos e fáceis de entender. |
+| **SciPy** | Faz cálculos estatísticos para provar se a chuva ou o vento realmente afetam os atrasos. |
+| **os** | Cria automaticamente a pasta `img/` no seu computador para guardar os gráficos gerados. |
+
