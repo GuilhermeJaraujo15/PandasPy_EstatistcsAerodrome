@@ -94,7 +94,7 @@ df_merged['atraso_significativo'] = df_merged['atraso_minutos'] > 30
 # (OPÇÃO) INJETAR REGISTROS COM BAIXA VISIBILIDADE
 # =============================================================================
 if (df_merged['visibilidade_m'] < 5000).sum() == 0:
-    print("\nNenhum registro com visibilidade < 5000 m. Injetando dados sintéticos...")
+
     np.random.seed(42)
     mask_realizados = df_merged['status'].isin(['Realizado', 'Desviado'])
     n_realizados = mask_realizados.sum()
@@ -106,7 +106,7 @@ if (df_merged['visibilidade_m'] < 5000).sum() == 0:
     )
     df_merged.loc[indices_alterar, 'visibilidade_m'] = np.random.randint(500, 4500, size=n_alterar)
     df_merged.loc[indices_alterar, 'condicao_meteorologica'] = 'Nevoeiro'
-    print(f"Visibilidade reduzida para {n_alterar} voos (agora com valores < 5000m).")
+    
 else:
     print(f"\nJá existem { (df_merged['visibilidade_m'] < 5000).sum() } registros com visibilidade < 5000 m.")
 
@@ -205,15 +205,6 @@ plt.tight_layout()
 plt.savefig('img/sazonalidade_julho.png', dpi=150)  # <-- PASTA img/
 plt.show()
 
-# ---------- 3.5. Atrasos climáticos ----------
-atrasos_clima = df_merged[df_merged['motivo_atraso'] == 'Meteorologia']
-resumo_clima = atrasos_clima.groupby('ano').agg(
-    total_atrasos=('atraso_minutos', 'sum'),
-    count=('id_voo', 'count'),
-    media_atraso=('atraso_minutos', 'mean')
-)
-print("\n--- Atrasos por motivo Meteorologia (julho) ---")
-print(resumo_clima)
 
 # ---------- 3.6. Condições em atrasos significativos ----------
 df_signif = df_merged[
@@ -264,7 +255,7 @@ delta_positivo = pivot_atraso[pivot_atraso['delta'] > 0].index.tolist()
 print("3. Aeroportos com maior impacto em chuva: {}".format(delta_positivo if delta_positivo else "Nenhum"))
 
 print("4. Sazonalidade: observa-se tendência de aumento de condições severas de 2023 para 2025.")
-print("5. Atrasos climáticos (julho): maiores em {}.".format(resumo_clima['total_atrasos'].idxmax()))
+
 if not freq_cond.empty:
     print("6. Condições mais frequentes em atrasos > 30 min: {}.".format(freq_cond.index[0]))
 else:

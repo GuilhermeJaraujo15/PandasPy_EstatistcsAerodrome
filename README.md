@@ -10,7 +10,7 @@ O sistema espera **6 arquivos CSV**:
 
 | Arquivo | Descrição | Colunas principais |
 | :--- | :--- | :--- |
-| `voos_2023.csv` | Voos realizados em julho/2023 | `id_voo`, `aeroporto_origem`, `data`, `horario_previsto`, `status`, `atraso_minutos`, `cancelado`, `motivo_atraso` |
+| `voos_2023.csv` | Voos realizados em julho/2023 | `id_voo`, `aeroporto_origem`, `aeroporto_destino`, `data`, `horario_previsto`, `status`, `atraso_minutos`, `cancelado`, `motivo_atraso` |
 | `voos_2024.csv` | Voos realizados em julho/2024 | *(mesma estrutura)* |
 | `voos_2025.csv` | Voos realizados em julho/2025 | *(mesma estrutura)* |
 | `meteorologia_aeroportos_2023.csv` | Dados meteorológicos horários para julho/2023 | `id_registro_meteo`, `aeroporto`, `data_hora`, `temperatura_c`, `pressao_hpa`, `visibilidade_m`, `vento_kmh`, `rajada_kmh`, `precipitacao_mm`, `cobertura_nuvens_pct`, `condicao_meteorologica` |
@@ -42,13 +42,11 @@ Dados carregados:
   Voos: 3720 registros
   Meteorologia: 4650 registros
 
-Nenhum registro com visibilidade < 5000 m. Injetando dados sintéticos...
-Visibilidade reduzida para 177 voos (agora com valores < 5000m).
 ```
 
 * **Voos**: 3.720 registros (3 anos × 31 dias × 40 voos/dia).
 * **Meteorologia**: 4.650 registros (3 anos × 31 dias × 10 aeroportos × 5 horários).
-* **Injeção de dados**: Como os dados originais não continham visibilidade muito baixa, o script injetou 177 registros sintéticos (5% dos voos realizados) com visibilidade entre 500 e 4.500 m para permitir a análise da faixa "Muito baixa (<5000m)".
+* **Injeção de dados**: O script injetou 177 registros sintéticos (5% dos voos realizados) com visibilidade entre 500 e 4.500 m para permitir a análise da faixa "Muito baixa (<5000m)".
 
 ---
 
@@ -133,25 +131,6 @@ ano
 * **Chuva intensa**: Manteve‑se baixa, com 20‑40 ocorrências.
 
 **Interpretação**: Há uma leve tendência de melhora nas condições meteorológicas ao longo dos anos, com menos dias chuvosos em 2025.
-
----
-
-## Atrasos por Motivo Meteorologia (julho)
-
-```text
---- Atrasos por motivo Meteorologia (julho) ---
-      total_atrasos  count  media_atraso
-ano                                     
-2023        34206.0   1180     28.988136
-2024        34678.0   1200     28.898333
-2025        32799.0   1120     29.284821
-```
-
-* **total_atrasos**: Soma de todos os minutos de atraso atribuídos à meteorologia.
-* **count**: Número de voos afetados.
-* **media_atraso**: Atraso médio por voo.
-
-**Interpretação**: O ano de 2024 teve o maior volume total de atrasos climáticos (34.678 min), apesar de a média por voo ser ligeiramente menor que em 2025. Isso indica que, em 2024, mais voos foram afetados, mas os atrasos individuais foram um pouco menores.
 
 ---
 
