@@ -187,6 +187,50 @@ O sistema espera **6 arquivos CSV**:
 | **Seaborn** | Deixa os gráficos do Matplotlib mais bonitos, coloridos e fáceis de entender. |
 | **os** | Cria automaticamente a pasta `img/` no seu computador para guardar os gráficos gerados. |
 
+PT-BR
+## Como executar localmente
+
+Este projeto não possui interface web. A análise é executada localmente pelo script `veranalise.py`, que processa os arquivos CSV do repositório e gera resultados estatísticos e gráficos.
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/GuilhermeJaraujo15/PandasPy_EstatisticsAerodrome.git
+cd PandasPy_EstatisticsAerodrome
+
+Também é possível baixar o projeto em Code > Download ZIP.
+2. Verifique o Python
+O projeto utiliza Python 3.12+.
+python --version
+
+ou:
+python3 --version
+
+3. Instale as dependências
+pip install pandas numpy matplotlib seaborn scipy
+
+ou:
+pip3 install pandas numpy matplotlib seaborn scipy
+
+4. Execute a análise
+python veranalise.py
+
+ou:
+python3 veranalise.py
+
+O script utiliza automaticamente os arquivos:
+voos_2023.csv
+voos_2024.csv
+voos_2025.csv
+meteorologia_aeroportos_2023.csv
+meteorologia_aeroportos_2024.csv
+meteorologia_aeroportos_2025.csv
+
+Os resultados estatísticos são exibidos no terminal e os gráficos gerados são salvos na pasta:
+img/
+
+Não é necessário utilizar banco de dados, servidor web ou serviços externos.
+
 # Explicação da Saída do Script
 
 Abaixo está a interpretação detalhada de cada bloco de saída gerado pelo script `veranalise.py`. Essas informações ajudam a entender os resultados e a validade das conclusões.
